@@ -1,6 +1,3 @@
-// Database Types for HRM SaaS
-// Auto-generated types for Supabase tables
-
 export type Json =
     | string
     | number
@@ -125,6 +122,7 @@ export interface Database {
                     description: string | null
                     level: number
                     is_active: boolean
+                    department_id?: string | null
                     created_at: string
                     updated_at: string
                 }
@@ -135,6 +133,7 @@ export interface Database {
                     description?: string | null
                     level?: number
                     is_active?: boolean
+                    department_id?: string | null
                     created_at?: string
                     updated_at?: string
                 }
@@ -145,6 +144,7 @@ export interface Database {
                     description?: string | null
                     level?: number
                     is_active?: boolean
+                    department_id?: string | null
                     created_at?: string
                     updated_at?: string
                 }

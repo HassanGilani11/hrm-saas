@@ -69,7 +69,7 @@ export default function EmployeeForm({
             lastName: initialData?.last_name || '',
             email: initialData?.email || '',
             phone: initialData?.phone || '',
-            dateOfBirth: initialData?.date_of_birth ? new Date(initialData.date_of_birth) : undefined as unknown as Date,
+            dateOfBirth: initialData?.date_of_birth ? new Date(initialData.date_of_birth) : undefined,
             gender: (initialData?.gender as 'MALE' | 'FEMALE' | 'OTHER') || 'MALE',
             bloodGroup: initialData?.blood_group || '',
             maritalStatus: (initialData?.marital_status as 'SINGLE' | 'MARRIED' | 'DIVORCED' | 'WIDOWED') || 'SINGLE',
