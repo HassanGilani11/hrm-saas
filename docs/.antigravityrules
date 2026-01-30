@@ -1,0 +1,345 @@
+# Cursor AI Rules for HRM SaaS Project
+
+## Project Context
+This is an HRM (Human Resource Management) SaaS application built with Next.js 14, Supabase, and TypeScript.
+
+## Documentation References
+Before writing any code, ALWAYS reference these files:
+- `/docs/README.md` - Project overview and setup
+- `/docs/ARCHITECTURE.md` - System architecture and design patterns
+- `/docs/DATABASE.md` - Database schema and queries
+- `/docs/FEATURES.md` - Feature specifications and requirements
+
+## Code Style & Standards
+
+### TypeScript
+- Use TypeScript for ALL files
+- Enable strict mode
+- Define proper types, avoid `any`
+- Use `interface` for object shapes, `type` for unions/intersections
+- Generate types from Supabase: `Database['public']['Tables']['table_name']['Row']`
+
+### Next.js Best Practices
+- Use App Router (not Pages Router)
+- Default to Server Components
+- Only use 'use client' when necessary (interactivity, hooks, browser APIs)
+- Use Server Actions for mutations
+- Implement proper loading states
+- Handle errors with error.tsx boundaries
+
+### Component Structure
+```typescript
+// Server Component (default)
+export default async function ComponentName() {
+  const data = await fetchData()
+  return <div>{data}</div>
+}
+
+// Client Component (when needed)
+'use client'
+export function ComponentName() {
+  const [state, setState] = useState()
+  return <div>{state}</div>
+}
+```
+
+### File Organization
+- One component per file
+- Co-locate related files
+- Use barrel exports (index.ts) for cleaner imports
+- Keep files under 300 lines
+
+### Naming Conventions
+- Components: PascalCase (UserProfile.tsx)
+- Utilities: camelCase (formatDate.ts)
+- Constants: UPPER_SNAKE_CASE
+- Database tables: snake_case (leave_types)
+- API routes: kebab-case (/api/check-in)
+
+## Supabase Integration
+
+### Client Usage
+```typescript
+// Client Component
+import { createClient } from '@/lib/supabase/client'
+const supabase = createClient()
+
+// Server Component/Action
+import { createClient } from '@/lib/supabase/server'
+const supabase = createClient()
+```
+
+### Query Patterns
+- Always filter by organization_id (RLS handles this, but be explicit)
+- Use select() to specify columns
+- Use relations for joins: `.select('*, department:departments(*)')`
+- Handle errors properly
+
+### Example Query
+```typescript
+const { data, error } = await supabase
+  .from('employees')
+  .select(`
+    *,
+    department:departments(name),
+    designation:designations(name)
+  `)
+  .eq('organization_id', organizationId)
+  .eq('status', 'ACTIVE')
+  .order('created_at', { ascending: false })
+
+if (error) throw error
+return data
+```
+
+## Form Handling
+
+### Always use:
+- React Hook Form for forms
+- Zod for validation
+- shadcn/ui Form components
+
+### Pattern:
+```typescript
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
+
+const schema = z.object({
+  email: z.string().email(),
+  name: z.string().min(2),
+})
+
+function MyForm() {
+  const form = useForm({
+    resolver: zodResolver(schema),
+  })
+  
+  async function onSubmit(data: z.infer<typeof schema>) {
+    // Handle submission
+  }
+  
+  return <Form {...form}>...</Form>
+}
+```
+
+## State Management
+
+### Server State (TanStack Query)
+```typescript
+import { useQuery, useMutation } from '@tanstack/react-query'
+
+const { data, isLoading } = useQuery({
+  queryKey: ['employees'],
+  queryFn: fetchEmployees,
+})
+
+const mutation = useMutation({
+  mutationFn: createEmployee,
+  onSuccess: () => {
+    queryClient.invalidateQueries(['employees'])
+  },
+})
+```
+
+### Client State (Zustand)
+```typescript
+import { create } from 'zustand'
+
+const useStore = create((set) => ({
+  isOpen: false,
+  toggle: () => set((state) => ({ isOpen: !state.isOpen })),
+}))
+```
+
+## Error Handling
+
+### Pattern:
+```typescript
+try {
+  const result = await operation()
+  toast.success('Operation successful')
+  return result
+} catch (error) {
+  console.error('Operation failed:', error)
+  toast.error(error.message || 'Something went wrong')
+  throw error
+}
+```
+
+### UI Errors:
+- Use `sonner` for toast notifications
+- Use error boundaries for component errors
+- Show user-friendly messages
+- Log detailed errors to console
+
+## Security Rules
+
+### NEVER:
+- Expose service role key in client code
+- Trust client-side validation alone
+- Skip RLS policies
+- Store sensitive data in localStorage
+- Use `any` type for user data
+
+### ALWAYS:
+- Validate on server side
+- Use RLS policies
+- Sanitize user inputs
+- Use proper authentication checks
+- Implement RBAC for protected routes
+
+## UI/UX Guidelines
+
+### shadcn/ui Usage
+- Use shadcn components as base
+- Customize via Tailwind classes
+- Keep consistent spacing (4, 8, 16, 24, 32)
+- Follow accessibility guidelines
+
+### Responsive Design
+- Mobile-first approach
+- Test on: mobile (375px), tablet (768px), desktop (1024px+)
+- Use Tailwind responsive prefixes (sm:, md:, lg:, xl:)
+
+### Loading States
+```typescript
+{isLoading ? (
+  <Skeleton className="h-20 w-full" />
+) : (
+  <DataComponent data={data} />
+)}
+```
+
+## Database Operations
+
+### Pattern for CRUD:
+```typescript
+// Create
+const { data, error } = await supabase
+  .from('table')
+  .insert(newRecord)
+  .select()
+  .single()
+
+// Read
+const { data, error } = await supabase
+  .from('table')
+  .select('*')
+  .eq('id', id)
+  .single()
+
+// Update
+const { data, error } = await supabase
+  .from('table')
+  .update(updates)
+  .eq('id', id)
+  .select()
+  .single()
+
+// Delete (soft delete preferred)
+const { data, error } = await supabase
+  .from('table')
+  .update({ status: 'INACTIVE' })
+  .eq('id', id)
+```
+
+## Performance Optimization
+
+### DO:
+- Use Server Components for data fetching
+- Implement pagination for large lists
+- Use `loading.tsx` for route loading states
+- Lazy load heavy components
+- Optimize images with Next/Image
+
+### DON'T:
+- Fetch data in client components
+- Load all records at once
+- Use large images without optimization
+- Over-use client components
+
+## Testing Checklist
+
+Before marking a feature as complete:
+- [ ] Works on mobile, tablet, desktop
+- [ ] Form validation works
+- [ ] Error states handled
+- [ ] Loading states shown
+- [ ] Success feedback given
+- [ ] RLS policies enforce security
+- [ ] TypeScript has no errors
+- [ ] Console has no errors/warnings
+
+## Common Patterns
+
+### Protected Route
+```typescript
+export default async function ProtectedPage() {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  if (!user) {
+    redirect('/login')
+  }
+  
+  return <div>Protected Content</div>
+}
+```
+
+### Server Action
+```typescript
+'use server'
+
+export async function createEmployee(formData: FormData) {
+  const supabase = createClient()
+  
+  // Validate
+  const validatedData = employeeSchema.parse({
+    firstName: formData.get('firstName'),
+    // ...
+  })
+  
+  // Insert
+  const { data, error } = await supabase
+    .from('employees')
+    .insert(validatedData)
+    .select()
+    .single()
+  
+  if (error) throw error
+  
+  revalidatePath('/employees')
+  return data
+}
+```
+
+## Questions to Ask Before Coding
+
+1. Is this a Server or Client Component?
+2. What Supabase queries are needed?
+3. What validations are required?
+4. How do I handle errors?
+5. What loading states do I need?
+6. Is this mobile-responsive?
+7. Have I checked the docs/FEATURES.md spec?
+
+## Resources
+
+- Next.js Docs: https://nextjs.org/docs
+- Supabase Docs: https://supabase.com/docs
+- shadcn/ui: https://ui.shadcn.com
+- TanStack Query: https://tanstack.com/query
+- React Hook Form: https://react-hook-form.com
+
+## When in Doubt
+
+1. Check `/docs/ARCHITECTURE.md` for design patterns
+2. Check `/docs/DATABASE.md` for schema
+3. Check `/docs/FEATURES.md` for requirements
+4. Look at existing similar components
+5. Ask for clarification
+
+---
+
+**Remember:** Write clean, type-safe, performant code that follows these guidelines. Quality over speed!
