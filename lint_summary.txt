@@ -1,0 +1,224 @@
+Files with errors: 28
+
+File: D:\NextJSProjects\hrm-saas\src\app\(auth)\forgot-password\page.tsx
+  Line 64: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`. (react/no-unescaped-entities)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(auth)\login\page.tsx
+  Line 125: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`. (react/no-unescaped-entities)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\employees\[id]\page.tsx
+  Line 33: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 52: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 270: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 288: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 305: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\employees\page.tsx
+  Line 110: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`. (react/no-unescaped-entities)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\leaves\actions.ts
+  Line 18: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 31: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 31: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 50: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 71: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 104: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 115: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 115: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 126: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 126: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 147: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 165: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\leaves\page.tsx
+  Line 95: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\payroll\employees\page.tsx
+  Line 29: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 29: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 49: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 56: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 61: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 61: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\payroll\page.tsx
+  Line 19: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 19: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 83: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`. (react/no-unescaped-entities)
+  Line 147: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\payroll\run\actions.ts
+  Line 35: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 38: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 50: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 53: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 61: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 63: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\payroll\structures\[id]\edit\edit-form.tsx
+  Line 24: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 31: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 31: Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\NextJSProjects\hrm-saas\src\app\(dashboard)\payroll\structures\[id]\edit\edit-form.tsx:31:76
+  29 |     // Add temp IDs to existing components for UI state management
+  30 |     const [earnings, setEarnings] = useState<SalaryComponent[]>(
+> 31 |         (structure.components.earnings || []).map((c: any) => ({ ...c, id: Math.random().toString(36).substr(2, 9) }))
+     |                                                                            ^^^^^^^^^^^^^ Cannot call impure function
+  32 |     )
+  33 |     const [deductions, setDeductions] = useState<SalaryComponent[]>(
+  34 |         (structure.components.deductions || []).map((c: any) => ({ ...c, id: Math.random().toString(36).substr(2, 9) })) (react-hooks/purity)
+  Line 34: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 34: Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\NextJSProjects\hrm-saas\src\app\(dashboard)\payroll\structures\[id]\edit\edit-form.tsx:34:78
+  32 |     )
+  33 |     const [deductions, setDeductions] = useState<SalaryComponent[]>(
+> 34 |         (structure.components.deductions || []).map((c: any) => ({ ...c, id: Math.random().toString(36).substr(2, 9) }))
+     |                                                                              ^^^^^^^^^^^^^ Cannot call impure function
+  35 |     )
+  36 |
+  37 |     const addComponent = (type: 'earning' | 'deduction') => { (react-hooks/purity)
+  Line 55: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\payroll\structures\actions.ts
+  Line 24: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 77: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\payroll\structures\new\page.tsx
+  Line 57: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\app\(dashboard)\profile\page.tsx
+  Line 14: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`. (react/no-unescaped-entities)
+
+File: D:\NextJSProjects\hrm-saas\src\components\attendance\attendance-action-dialog.tsx
+  Line 51: Error: Cannot access variable before it is declared
+
+`getLocation` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+D:\NextJSProjects\hrm-saas\src\components\attendance\attendance-action-dialog.tsx:51:13
+  49 |             setLocation(undefined)
+  50 |             setLocationError('')
+> 51 |             getLocation()
+     |             ^^^^^^^^^^^ `getLocation` accessed before it is declared
+  52 |         }
+  53 |     }, [isOpen])
+  54 |
+
+D:\NextJSProjects\hrm-saas\src\components\attendance\attendance-action-dialog.tsx:55:5
+  53 |     }, [isOpen])
+  54 |
+> 55 |     const getLocation = () => {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 56 |         if (!navigator.geolocation) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 57 |             setLocationError('Geolocation is not supported by your browser')
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 92 |         )
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 93 |     }
+     | ^^^^^^ `getLocation` is declared here
+  94 |
+  95 |     const handleSubmit = () => {
+  96 |         onConfirm(notes, location) (react-hooks/immutability)
+
+File: D:\NextJSProjects\hrm-saas\src\components\attendance\attendance-dashboard.tsx
+  Line 23: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 24: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 41: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\NextJSProjects\hrm-saas\src\components\attendance\attendance-dashboard.tsx:41:9
+  39 |
+  40 |     useEffect(() => {
+> 41 |         setCurrentTime(new Date())
+     |         ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  42 |         const timer = setInterval(() => setCurrentTime(new Date()), 1000)
+  43 |         return () => clearInterval(timer)
+  44 |     }, []) (react-hooks/set-state-in-effect)
+  Line 46: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 62: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\employees\employee-filters.tsx
+  Line 22: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\employees\employee-form.tsx
+  Line 47: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\layout\header.tsx
+  Line 20: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 21: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\layout\sidebar-nav.tsx
+  Line 9: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 41: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\NextJSProjects\hrm-saas\src\components\layout\sidebar-nav.tsx:41:13
+  39 |
+  40 |         if (activeParents.length > 0) {
+> 41 |             setExpandedItems(activeParents)
+     |             ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  42 |         } else {
+  43 |             setExpandedItems([])
+  44 |         } (react-hooks/set-state-in-effect)
+
+File: D:\NextJSProjects\hrm-saas\src\components\leaves\delete-holiday-dialog.tsx
+  Line 16: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\leaves\holiday-dialog.tsx
+  Line 25: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\leaves\leave-application-form.tsx
+  Line 22: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\leaves\leaves-dashboard.tsx
+  Line 39: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 40: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 41: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 42: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 43: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 60: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 65: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 70: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\payroll\employee-salary-list.tsx
+  Line 41: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 44: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 111: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`. (react/no-unescaped-entities)
+  Line 111: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`. (react/no-unescaped-entities)
+
+File: D:\NextJSProjects\hrm-saas\src\components\payroll\payroll-run-flow.tsx
+  Line 26: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 144: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 144: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\payroll\salary-structures-list.tsx
+  Line 34: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 113: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 124: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\components\profile\profile-form.tsx
+  Line 37: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
+File: D:\NextJSProjects\hrm-saas\src\lib\utils\export.ts
+  Line 1: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 8: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 8: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+  Line 9: Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+
