@@ -129,6 +129,8 @@ export async function finalizePayrollAction(month: number, year: number) {
             .eq('id', user.id)
             .single()
 
+        if (!userData) return { success: false, error: 'User data not found' }
+
         const { count, error } = await supabase
             .from('salaries')
             .update({ status: 'APPROVED' }, { count: 'exact' })

@@ -43,7 +43,7 @@ export function DepartmentForm({ initialData, departmentId, onSuccess }: Departm
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const form = useForm<FormValues>({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(formSchema) as any,
         defaultValues: {
             name: initialData?.name || '',
             description: initialData?.description || '',

@@ -46,7 +46,7 @@ export async function createSalaryStructureAction(prevState: any, formData: Form
         if (!validated.success) {
             return {
                 success: false,
-                error: validated.error.errors[0]?.message || 'Invalid data'
+                error: (validated.error as any).errors[0]?.message || 'Invalid data'
             }
         }
 
@@ -97,7 +97,7 @@ export async function updateSalaryStructureAction(id: string, prevState: any, fo
         if (!validated.success) {
             return {
                 success: false,
-                error: validated.error.errors[0]?.message || 'Invalid data'
+                error: (validated.error as any).errors[0]?.message || 'Invalid data'
             }
         }
 

@@ -42,7 +42,7 @@ export async function updateOrganizationAction(data: OrganizationFormValues) {
     // Validate data
     const validated = organizationSchema.safeParse(data)
     if (!validated.success) {
-        return { success: false, error: validated.error.errors[0].message }
+        return { success: false, error: (validated.error as any).errors[0].message }
     }
 
     // Update organization

@@ -39,7 +39,7 @@ function SubmitButton() {
 }
 
 export function LeaveApplicationForm({ leaveTypes, onSuccess }: LeaveApplicationFormProps) {
-    const [state, formAction] = useActionState(applyLeaveAction, initialState)
+    const [state, formAction] = useActionState(applyLeaveAction as any, initialState)
     const [isHalfDay, setIsHalfDay] = useState(false)
 
     useEffect(() => {

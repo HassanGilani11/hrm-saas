@@ -45,13 +45,13 @@ export default async function EmployeesPage(props: EmployeesPageProps) {
         .from('departments')
         .select('id, name')
         .eq('organization_id', organizationId)
-        .order('name')
+        .order('name') as any
 
     const { data: designations = [] } = await supabase
         .from('designations')
         .select('id, name')
         .eq('organization_id', organizationId)
-        .order('name')
+        .order('name') as any
 
     // Build query for employees
     let query = supabase
@@ -90,14 +90,14 @@ export default async function EmployeesPage(props: EmployeesPageProps) {
     }
 
     if (searchParams.status && searchParams.status !== 'all') {
-        query = query.eq('status', searchParams.status)
+        query = query.eq('status', searchParams.status as any)
     }
 
     if (searchParams.type && searchParams.type !== 'all') {
-        query = query.eq('employment_type', searchParams.type)
+        query = query.eq('employment_type', searchParams.type as any)
     }
 
-    const { data: employees = [], error: employeesError } = await query
+    const { data: employees = [], error: employeesError } = await query as any
 
     const canCreateEmployee = ['SUPER_ADMIN', 'HR_ADMIN'].includes(userData.role)
 
@@ -158,7 +158,7 @@ export default async function EmployeesPage(props: EmployeesPageProps) {
                             </tr>
                         </thead>
                         <tbody className="divide-y">
-                            {employees.map((employee) => (
+                            {employees.map((employee: any) => (
                                 <tr key={employee.id} className="hover:bg-muted/30 transition-colors">
                                     <td className="px-6 py-4 text-sm font-medium">{employee.employee_id}</td>
                                     <td className="px-6 py-4 text-sm">

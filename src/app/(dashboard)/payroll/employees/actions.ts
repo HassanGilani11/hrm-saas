@@ -31,6 +31,7 @@ export async function assignSalaryAction(data: {
                 salary_structure_id: data.structure_id || null, // Convert "" to null
                 base_salary: data.base_salary,
                 payment_method: data.payment_method,
+                effective_date: new Date().toISOString(),
             }, {
                 onConflict: 'organization_id, employee_id'
             })

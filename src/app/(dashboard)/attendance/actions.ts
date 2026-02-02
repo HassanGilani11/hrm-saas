@@ -77,6 +77,9 @@ export async function checkOutAction(employeeId: string, notes?: string, locatio
     }
 
     // Calculate working hours
+    if (!openSession.check_in) {
+        return { success: false, error: 'Invalid session state' }
+    }
     const checkInTime = new Date(openSession.check_in)
     const durationMs = now.getTime() - checkInTime.getTime()
     const workingHours = (durationMs / (1000 * 60 * 60)).toFixed(2)

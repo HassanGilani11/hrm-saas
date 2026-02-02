@@ -27,7 +27,7 @@ const formSchema = z.object({
     address: z.string().optional(),
 })
 
-type FormValues = z.infer<typeof formSchema>
+export type OrganizationFormValues = z.infer<typeof formSchema>
 
 interface OrganizationFormProps {
     initialData: {
@@ -43,7 +43,7 @@ interface OrganizationFormProps {
 export function OrganizationForm({ initialData, isReadOnly = false }: OrganizationFormProps) {
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const form = useForm<FormValues>({
+    const form = useForm<OrganizationFormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: initialData.name,
@@ -53,7 +53,7 @@ export function OrganizationForm({ initialData, isReadOnly = false }: Organizati
         },
     })
 
-    async function onSubmit(data: FormValues) {
+    async function onSubmit(data: OrganizationFormValues) {
         setIsSubmitting(true)
         try {
             const result = await updateOrganizationAction(data)

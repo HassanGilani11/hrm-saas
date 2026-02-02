@@ -1,0 +1,6 @@
+{
+    "extends": "./tsconfig.json",
+    "include": [
+        "src/debug_supabase_types.ts"
+    ]
+}

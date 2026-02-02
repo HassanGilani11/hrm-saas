@@ -65,7 +65,7 @@ export async function updateOrganizationAction(data: OrganizationFormValues) {
                 phone: data.phone,
                 address: data.address, // updated_at trigger handles timestamp
             })
-            .eq('id', userData?.organization_id)
+            .eq('id', userData!.organization_id)
 
         if (error) {
             return { success: false, error: error.message }

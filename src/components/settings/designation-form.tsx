@@ -58,7 +58,7 @@ export function DesignationForm({ initialData, departments, designationId, onSuc
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const form = useForm<FormValues>({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(formSchema) as any,
         defaultValues: {
             name: initialData?.name || '',
             description: initialData?.description || '',

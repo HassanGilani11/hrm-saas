@@ -49,7 +49,7 @@ export function HolidayDialog({ holiday, onSuccess }: HolidayDialogProps) {
         ? updateHolidayAction.bind(null, holiday.id)
         : createHolidayAction
 
-    const [state, formAction] = useActionState(action, initialState)
+    const [state, formAction] = useActionState(action as any, initialState)
 
     useEffect(() => {
         if (state.success) {

@@ -1,12 +1,6 @@
-export type Json =
-    | string
-    | number
-    | boolean
-    | null
-    | { [key: string]: Json | undefined }
-    | Json[]
+export type Json = any
 
-export interface Database {
+export type Database = {
     public: {
         Tables: {
             organizations: {
@@ -52,6 +46,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             users: {
                 Row: {
@@ -81,6 +76,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             departments: {
                 Row: {
@@ -113,6 +109,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             designations: {
                 Row: {
@@ -148,6 +145,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             employees: {
                 Row: {
@@ -234,6 +232,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             leave_types: {
                 Row: {
@@ -278,6 +277,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             leave_balances: {
                 Row: {
@@ -319,6 +319,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             attendances: {
                 Row: {
@@ -369,6 +370,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             leaves: {
                 Row: {
@@ -422,6 +424,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             holidays: {
                 Row: {
@@ -457,6 +460,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             salary_structures: {
                 Row: {
@@ -489,6 +493,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             employee_salary_settings: {
                 Row: {
@@ -527,6 +532,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             salaries: {
                 Row: {
@@ -577,6 +583,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
             documents: {
                 Row: {
@@ -621,6 +628,7 @@ export interface Database {
                     created_at?: string
                     updated_at?: string
                 }
+                Relationships: []
             }
         }
         Views: {
